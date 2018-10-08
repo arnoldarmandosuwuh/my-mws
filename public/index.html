@@ -178,7 +178,8 @@
         <img class="img-profil" width="200px" height="200px" src="images/WhatsApp Image 2018-08-28 at 19.48.43.jpeg">
         <p class="title-page">
           Arnold Armando Suwuh <br>
-          Mobile Web Specialist
+          Mobile Web Specialist <br>
+          Batch 1 - 2018
         </p>
       </div>
     </div>
@@ -211,5 +212,17 @@
     </div>
   </div>
 </body>
-
+<script>
+let promise = new promise(function(resolve, reject) {
+  let isSuccessful = true;
+  setTimeout(function(){
+    if (isSuccessful){
+      resolve('berhasil!');
+    }
+    else{
+      reject(Error('terjadi error'));
+    }
+  },2000);
+});
+</script>
 </html>
