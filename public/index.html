@@ -2,7 +2,7 @@
 
 <head>
   <meta name="viewport" content="width=device-width, initialscale=1">
-	<link rel="icon" href="http://www.iconarchive.com/download/i60522/custom-icon-design/pretty-office-9/font.ico">
+	<link rel="icon" href="images/Custom-Icon-Design-Pretty-Office-9-Font.ico">
 	<title>Arnold Armando - MWS</title>
   <style>
     body {
@@ -211,18 +211,18 @@
       <p>© 2018. <a href="https://www.instagram.com/arnoldarmandosuwuh">Arnold Armando Suwuh</a></p>
     </div>
   </div>
+  <script>
+    if ('serviceWorker' in navigator){
+      window.addEventListener('load', function(){
+        navigator.serviceWorker.register('/sw.js').then(function(registration){
+          // Registration Successful
+          console.log('ServiceWorker resgistration successful with scope : ', registration.scope);
+        }).catch(function(err){
+          // Registration failed
+          console.log('ServiceWorker registration failed : ', err);
+        });
+      });
+    }  
+  </script>
 </body>
-<script>
-let promise = new promise(function(resolve, reject) {
-  let isSuccessful = true;
-  setTimeout(function(){
-    if (isSuccessful){
-      resolve('berhasil!');
-    }
-    else{
-      reject(Error('terjadi error'));
-    }
-  },2000);
-});
-</script>
 </html>
