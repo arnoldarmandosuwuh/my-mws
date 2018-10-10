@@ -194,6 +194,18 @@
 		<div id="mapid"></div>	
 		</div>
 		<script>
+		    if ('serviceWorker' in navigator){
+    		 window.addEventListener('load', function(){
+        		navigator.serviceWorker.register('/../sw.js').then(function(registration){
+          		// Registration Successful
+          			console.log('ServiceWorker resgistration successful with scope : ', registration.scope);
+        		}).catch(function(err){
+          		// Registration failed
+          			console.log('ServiceWorker registration failed : ', err);
+        		});
+      		 });
+    		}
+
 			//var mapboxgl = require('node_modules/mapbox-gl/dist/mapbox-gl.js');
 			mapboxgl.accessToken = 'pk.eyJ1IjoiYXJub2xkYXJtYW5kbzA3IiwiYSI6ImNqbWV5ZW5ueTFvMjAzcWxodWk5aW1pNWkifQ.vpy9jJBkKHo_CJpC9XXcYw';
 			var map = new mapboxgl.Map({
