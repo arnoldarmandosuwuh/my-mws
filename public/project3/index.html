@@ -33,6 +33,11 @@
 		<div class="konten3" id="konten">
 		<div id="mapid"></div>	
 		</div>
+		<div class="konten4" id="konten">
+			<div class="review" id="review">
+				
+			</div>
+		  </div>
 		<script>
 			
 			var mymap = L.map('mapid').locate({setView: true, maxZoom: 20});
@@ -43,37 +48,13 @@
 			accessToken: 'pk.eyJ1IjoiYXJub2xkYXJtYW5kbzA3IiwiYSI6ImNqbWV5ZW5ueTFvMjAzcWxodWk5aW1pNWkifQ.vpy9jJBkKHo_CJpC9XXcYw'
 		}).addTo(mymap);
 
-		function onLocationFound(e) {
-				var radius = e.accuracy / 2;
-
-				L.marker(e.latlng).addTo(mymap)
-					.bindPopup("You are within " + radius + " meters from this point").openPopup();
-
-				L.circle(e.latlng, radius).addTo(mymap);
-			}
-
-			mymap.on('locationfound', onLocationFound);
-			function onLocationError(e) {
-				alert(e.message);
-			}
-
-			mymap.on('locationerror', onLocationError);
-
-			var popup = L.popup();
-
-			function onMapClick(e) {
-				popup
-					.setLatLng(e.latlng)
-					.setContent("You clicked the map at " + e.latlng.toString())
-					.openOn(mymap);
-			}
-
-			mymap.on('click', onMapClick);
+		
 		</script>		
 		<div class="footer">
 			<p>© 2018. <a href="https://www.instagram.com/arnoldarmandosuwuh">Arnold Armando Suwuh</a></p>
 		</div>
 	</div>
+	<script src="peta.js"></script>
 </body>
 
 </html>
