@@ -32,7 +32,7 @@ color: #fff;
     display: inline-grid;   
         width: 100%;   
         grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: 40px 300px 100px 30px;      
+        grid-template-rows: 30px 300px 100px 30px;      
         grid-gap: 2px; 
  }
  .menu {
@@ -63,9 +63,6 @@ color: #fff;
  #mapid { 
   top:0; bottom:0; width:100%;
 }
-.review { 
-  top:0; bottom:0; width:100%;
-}
  .konten1 {
    background: #5a0d79;
  }
@@ -78,6 +75,16 @@ color: #fff;
  .konten4 {
    background: #91a078;
  }
+ .gambar {
+  /* height: 32em; */
+  max-width: 100%;
+  max-height: 20em;
+}
+
+.review {
+  color: #ffffff;
+  font-size: 1.2em;
+}
  .konten a{
       color: white;
       margin-right: 10px;
@@ -93,7 +100,7 @@ color: #fff;
     }
  .footer {
       background: #36a1ce;
-      display: flex;          
+  display: flex;          
       grid-column: 1/5;      
       grid-row : 4/4;  
       vertical-align: middle;
@@ -121,13 +128,13 @@ color: #fff;
 .img-profil{
     display: flex;
     margin: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 50%;
-    object-fit: cover;
-    height: 150px;
-    width: 150px;
-    color: white;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50%;
+  object-fit: cover;
+  height: 150px;
+  width: 150px;
+  color: white;
   }
 .apps{
       width: 80px;

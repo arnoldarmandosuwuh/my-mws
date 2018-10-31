@@ -23,7 +23,7 @@
 		</div>
 		<div class="sidebar">
 			<div>
-				<img class="img-profil" width="200px" height="200px" src="../images/maps-icon.png">
+				<img class="img-profil" width="200px" height="200px" src="../images/map_parking_icon-01.png">
 				<p class="title-page">
 					Project 3 : <br>
 					Mobile Apps - LeafLet Fetch JSON
@@ -34,27 +34,15 @@
 		<div id="mapid"></div>	
 		</div>
 		<div class="konten4" id="konten">
-			<div class="review" id="review">
-				
-			</div>
-		  </div>
-		<script>
-			
-			var mymap = L.map('mapid').locate({setView: true, maxZoom: 20});
-			L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-			attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-			maxZoom: 20,
-			id: 'mapbox.streets',
-			accessToken: 'pk.eyJ1IjoiYXJub2xkYXJtYW5kbzA3IiwiYSI6ImNqbWV5ZW5ueTFvMjAzcWxodWk5aW1pNWkifQ.vpy9jJBkKHo_CJpC9XXcYw'
-		}).addTo(mymap);
-
+			<div class="gambar" id='gmb' ></div>
+			<div class="review" id='review'></div>
+		</div>
+		<script src="js/maps.js"></script>
 		
-		</script>		
 		<div class="footer">
 			<p>© 2018. <a href="https://www.instagram.com/arnoldarmandosuwuh">Arnold Armando Suwuh</a></p>
 		</div>
 	</div>
-	<script src="peta.js"></script>
 </body>
 
 </html>
