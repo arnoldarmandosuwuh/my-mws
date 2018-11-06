@@ -25,7 +25,7 @@
 			<div>
 				<img class="img-profil" width="200px" height="200px" src="../images/map_parking_icon-01.png">
 				<p class="title-page">
-					Project 3 : <br>
+					Project 4 : <br>
 					Mobile Apps - LeafLet Fetch JSON
 				</p>
 			</div>
@@ -34,9 +34,17 @@
 		<div id="mapid"></div>	
 		</div>
 		<div class="konten4" id="konten">
-			<div class="gambar" id='gmb' ></div>
+			<div class="gambar" id='gmb'></div>
 			<div class="review" id='review'></div>
 		</div>
+		<script>
+		var mymap = L.map('mapid').setView([-7.2900495, 112.7768881], 16);
+			L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+			attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+			id: 'mapbox.streets',
+			accessToken: 'pk.eyJ1IjoiYXJub2xkYXJtYW5kbzA3IiwiYSI6ImNqbWV5ZW5ueTFvMjAzcWxodWk5aW1pNWkifQ.vpy9jJBkKHo_CJpC9XXcYw'
+		}).addTo(mymap);
+			</script>
 		<script src="js/maps.js"></script>
 		
 		<div class="footer">

@@ -1,77 +1,44 @@
-var currentLocation = [];
-var mymap;
-
-if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(loc) {
-        console.log(loc.coords.latitude);
-        console.log(loc.coords.longitude);
-        console.log(loc.coords.accuracy);
-
-        currentLocation = [loc.coords.latitude, loc.coords.longitude];
-        mymap = L.map('mapid').setView(currentLocation, 20);
-        L.marker(currentLocation).addTo(mymap);
-
-        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>,Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-            maxZoom: 20,
-            id: 'mapbox.streets',
-            accessToken: 'pk.eyJ1IjoiYXJub2xkYXJtYW5kbzA3IiwiYSI6ImNqbWV5ZW5ueTFvMjAzcWxodWk5aW1pNWkifQ.vpy9jJBkKHo_CJpC9XXcYw'
-        }).addTo(mymap);
-    });
+function findLocation(x,y) {
+    // console.log(x,y);    
+    for (var i=0; i< places.length;i++) {
+        if (places[i].lokasi[0]==x && 
+            places[i].lokasi[1]==y) {
+            return i;
+        }
+    }
+    return -1;
 }
-
-var urlZomatos = "https://developers.zomato.com/api/v2.1/";
-var locationSearch = urlZomatos + "locations?query=";
-var searchRestoran = urlZomatos + "search?";
-var userKey = "2c95c8b54e3bbc8251157a9f0f2041a2";
-
-var requestLocation = function (e, self) {
-    if (e.keyCode && e.keyCode === 13) {
-        let query = self.value.trim();
-        if (query) {
-            let getLocationURl = locationSearch + query;
-            fetch(getLocationURl, {
-                method: 'GET',
-                headers: {
-                "Content-Type": "application/json; charset=utf-8",
-                "user-key": userKey
-                }
-            })
-            .then(resp => resp.json())
-            .then(data => {
-                console.log(data);
-                currentLocation = [data.location_suggestions[0].latitude, data.location_suggestions[0].longitude];
-                mymap.setView(currentLocation, 11);
-                L.marker(currentLocation).addTo(mymap);
-
-                requestRestaurants(currentLocation);
-            })
-            .catch(err => console.log(err));
-        }
-        else {
-            console.log("cannot set nul value");
-        }
+function showLocation(e) {   
+    //console.log("you clicked " + e.latlng.lat + " dan "+ e.latlng.lng);
+    let ix= findLocation(e.latlng.lat,e.latlng.lng);
+    if (ix >=0) {
+        img.src= places[ix].gambar;
+        par.textContent=places[ix].review;
     }
 }
 
-var requestRestaurants = function (location) {
-    let getRestaurantsURl = searchRestoran + `lat=${location[0]}&lon=${location[1]}&radius=200`;
-    fetch(getRestaurantsURl, {
-        method: "GET",
-        headers: {
-            'Content-Type': "application/json; charset=utf-8",
-            'user-key': userKey
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        let placeResponses = data.restaurants;
+let gmb= document.getElementById("gmb");
+let rev= document.getElementById("review");
+let img= document.createElement('img');
+let par= document.createElement('p');
+gmb.appendChild(img);
+rev.appendChild(par);
 
-        for (m of placeResponses) {
-          let p = m.restaurant.location;
-          let place = [p.latitude, p.longitude];
-          L.marker(place).addTo(mymap);
-        }
-    })
-    .catch(err => console.log(err));
+let r0="Sop Ayam Pak Min Klaten menyediakan sop ayam dengan rasa yang khas klaten dengan tempat dan harga yang terjangkau.";
+let r1="Bakso Kalap ini enak-enak menunya. Harganya juga murah meriah";
+let r2="Citra pemuda terkenal dengan ayam gorengnya. Namun kali ini saya nyobain menu lainnya, yaitu ayam bakar. Kalau disini, kamu nggak akan nemu ayam bakar karena nggak ada di menu. Di Citra pemuda mereka menyebutnya Kalasan.";
+let r3="Menu yang menjadi Menu Favorit, yaitu Ayam Goreng Nelongso Plus Nasi, Cukup merogok kocek Rp 5000. Seperti di Outlet lainnya, di outlet Klampis ini juga terdapat 10 sambal favorit yang di sediakan kepada pelanggan secara gratis. ";
+let r4="Rodo Pizza & Bar dengan segala macam varian menu INDONESIAN CUISINE ";
+let places= [ 
+    {"lokasi": [-7.2906328, 112.780654], "sponsor" : "Sop Ayam Pak Min Klaten", "gambar":"data/images/Sop.jpg","review": r0},
+    {"lokasi": [-7.2900495, 112.7768881], "sponsor" : "Bakso Kalap & Ayam Bakar", "gambar":"data/images/Bakso.jpg","review": r1},
+    {"lokasi": [-7.2910159, 112.7771672], "sponsor" : "Ayam Goreng Citra Pemuda", "gambar":"data/images/Citra.jpg","review": r2},
+    {"lokasi": [-7.290106, 112.7766039], "sponsor" : "Ayam Goreng Nelongso Cab. Klampis", "gambar":"data/images/Nelongso.jpg","review": r3},
+    {"lokasi": [-7.2901326, 112.7764376], "sponsor" : "Rodo Pizza & Bar", "gambar":"data/images/Rodo.jpg","review": r4}
+];
+
+for (var p of places) {
+    var marker= L.marker(p.lokasi).addTo(mymap)
+     .bindPopup(p.sponsor);
+    marker.on('click', showLocation);
 }
